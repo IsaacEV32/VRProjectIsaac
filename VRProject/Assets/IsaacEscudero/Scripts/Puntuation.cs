@@ -23,6 +23,10 @@ public class Puntuation : MonoBehaviour
     {
         puntuation.text = points.ToString();
     }
+    public int GetPuntuation()
+    {
+        return points;
+    }
     public void SetPuntuation()
     {
         if (points < 20)
@@ -33,7 +37,7 @@ public class Puntuation : MonoBehaviour
         else
         {
             puntuation.text = "FIN";
-            InstantiateCubes.instance.gameObject.SetActive(false);
+            InstantiateCubes.instance.DeactivateSpawner();
         }
 
     }
