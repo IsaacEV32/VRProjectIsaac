@@ -53,7 +53,7 @@ public class InstantiateCubes : MonoBehaviour
             Vector3 direction = (new Vector3(Camera.main.transform.position.x + offset, Camera.main.transform.position.y + offset, Camera.main.transform.position.z + offset) - spawnPos.position).normalized;
             //Se le dara una posicion donde el cubo deba aparecer
             Vector3 cubePosition =
-                new Vector3(spawnPos.position.x + direction.x, originalY + direction.y, spawnPos.position.z);
+                new Vector3(spawnPos.position.x + direction.x + offset, originalY + direction.y, spawnPos.position.z);
             //Se crea un objeto cubo
             GameObject c = Instantiate(cubes, cubePosition, Quaternion.identity);
             //Se calcula la rotacion del cubo sin afectar la rotacion en Y para que el cubo se diriga hacia el jugador
