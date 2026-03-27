@@ -7,10 +7,10 @@ public class Puntuation : MonoBehaviour
     [SerializeField] TMP_Text puntuation;
     //Texto para guardar los puntos
     int points = 0;
-    
+    static int maxPoints;
     //Instacia del gestor de puntuacion
     public static Puntuation instance;
-    
+
     //Singleton para este gestor
     private void Awake()
     {
@@ -26,13 +26,16 @@ public class Puntuation : MonoBehaviour
     //Se inicializa la puntuacion por defecto a 0
     void Start()
     {
-        puntuation.text = points.ToString();
+        if (puntuation != null)
+        {
+            puntuation.text = points.ToString();
+        }
     }
     //Se llama a esta funcion para establecer la puntuacion
     public void SetPuntuation()
     {
         //Si el jugador tiene menos de veinte puntos 
-        if (points < 20)
+        if (points < maxPoints)
         {
             //Se suma un punto y se actualiza la puntuacion por pantalla
             points++;
@@ -45,5 +48,10 @@ public class Puntuation : MonoBehaviour
             InstantiateCubes.instance.DeactivateSpawner();
         }
 
+    }
+    public void SetMaxPuntuation(int _maxPoints)
+    {
+        maxPoints = _maxPoints;
+        Debug.Log(maxPoints);
     }
 }
