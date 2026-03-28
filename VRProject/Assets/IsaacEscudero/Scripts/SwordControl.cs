@@ -6,15 +6,19 @@ public class SwordControl : MonoBehaviour
     [SerializeField] GameObject leftSable;
     private void Start()
     {
-        if (!UI.instance.CheckSableMode())
+        if (leftSable != null)
         {
-            leftSable.SetActive(false);
-        }
-        else
-        {
-            leftSable.SetActive(true);
-        }
+            if (!UI.instance.CheckSableMode())
+            {
+                leftSable.SetActive(false);
+            }
+            else
+            {
+                leftSable.SetActive(true);
+            }
 
+
+        }
 
     }
     private void OnCollisionEnter(Collision collision)
@@ -22,10 +26,22 @@ public class SwordControl : MonoBehaviour
         //Si entra en colision con un objeto que tenga el script Cubes 
         if (collision.gameObject.TryGetComponent(out Cubes c))
         {
-            //Se llama a la funcion para actualizar la puntuacion
-            Puntuation.instance.SetPuntuation();
-            //Se destruye el cubo
-            c.DestroyCube();
+            if (c as HardModeCubes)
+            {
+                //Se llama a la funcion para actualizar la puntuacion
+                Puntuation.instance.SetPuntuationCubosModoDificil();
+                //Se destruye el cubo
+                c.DestroyCube();
+            }
+            else
+            {
+                //Se llama a la funcion para actualizar la puntuacion
+                Puntuation.instance.SetPuntuationCubosNormales();
+                //Se destruye el cubo
+                c.DestroyCube();
+            }
+            
         }
+        
     }
 }

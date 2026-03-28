@@ -32,13 +32,40 @@ public class Puntuation : MonoBehaviour
         }
     }
     //Se llama a esta funcion para establecer la puntuacion
-    public void SetPuntuation()
+    public void SetPuntuationCubosNormales()
     {
         //Si el jugador tiene menos de veinte puntos 
         if (points < maxPoints)
         {
             //Se suma un punto y se actualiza la puntuacion por pantalla
             points++;
+            puntuation.text = points.ToString();
+        }
+        else if (points < 0)
+        {
+            points = 0;
+            puntuation.text = points.ToString();
+        }
+        else
+        {
+            //Si no, sw mostrara el cartel FIN y se desactivara el generador de cubos
+            puntuation.text = "FIN";
+            InstantiateCubes.instance.DeactivateSpawner();
+        }
+
+    }
+    public void SetPuntuationCubosModoDificil()
+    {
+        //Si el jugador tiene menos de veinte puntos 
+        if (points < maxPoints)
+        {
+            //Se resta un punto y se actualiza la puntuacion por pantalla
+            points--;
+            puntuation.text = points.ToString();
+        }
+        else if (points < 0)
+        {
+            points = 0;
             puntuation.text = points.ToString();
         }
         else

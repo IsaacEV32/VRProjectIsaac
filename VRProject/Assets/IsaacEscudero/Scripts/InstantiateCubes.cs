@@ -7,19 +7,19 @@ using UnityEngine.XR.Interaction.Toolkit.Locomotion;
 public class InstantiateCubes : MonoBehaviour
 {
     //Referencia al jugador
-    [SerializeField] Transform player;
+    [SerializeField] protected Transform player;
     //Referencia a los cubos que debe de instanciar
-    [SerializeField] GameObject cubes;
+    [SerializeField] protected GameObject cubes;
     //Se usa como offset
-    float destinationOffsetRange;
+    protected float destinationOffsetRange;
     //Referencia para la posicion del spawner
-    [SerializeField] Transform spawnPos;
+    [SerializeField] protected Transform spawnPos;
     //Instancia para el singelton
     public static InstantiateCubes instance;
     //Se utiliza para controlar la generacion de los cubos
-    bool isSpawning = true;
+    protected bool isSpawning = true;
     //Se usa para mantener que los cubos se spawneen en una determinada Y
-    float originalY;
+    protected float originalY;
     
     //Singelton para la creacion de cubos
     private void Awake()
@@ -42,7 +42,7 @@ public class InstantiateCubes : MonoBehaviour
         //Comienza la corrutina para generar cubos
         StartCoroutine(InstantianteDelay());
     }
-    IEnumerator InstantianteDelay()
+    public virtual IEnumerator InstantianteDelay()
     {
         //Mientras se mantenga activo el generador de cubos
         while (isSpawning)
