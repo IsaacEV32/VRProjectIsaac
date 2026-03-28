@@ -5,11 +5,20 @@ using UnityEngine.UI;
 
 public class UI : MonoBehaviour
 {
-    bool isDoubleSableActive = true;
-    [SerializeField] GameObject leftSable;
+    static bool isDoubleSableActive = true;
     [SerializeField] Text textForSableOption;
+    public static UI instance;
     private void Awake()
     {
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
         textForSableOption.text = "Modo 2 sables";
         Puntuation.instance.SetMaxPuntuation(10);
     }
@@ -17,17 +26,19 @@ public class UI : MonoBehaviour
     {
         if (isDoubleSableActive)
         {
-            leftSable.SetActive(false);
             textForSableOption.text = "Modo 1 sable";
             isDoubleSableActive = false;
         }
         else if (!isDoubleSableActive)
         {
-            leftSable.SetActive(true);
             textForSableOption.text = "Modo 2 sables";
             isDoubleSableActive = true;
         }
 
+    }
+    public bool CheckSableMode()
+    {
+        return isDoubleSableActive;
     }
     public void ChangeMaxPoints(int value)
     {
