@@ -4,6 +4,7 @@ using UnityEngine;
 public class SwordControl : MonoBehaviour
 {
     [SerializeField] GameObject leftSable;
+    //Sirve comprobar si se ha activado el modo dos espadas o una espada
     private void Start()
     {
         if (leftSable != null)

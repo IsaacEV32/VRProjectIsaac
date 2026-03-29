@@ -63,6 +63,7 @@ public class Puntuation : MonoBehaviour
             points--;
             puntuation.text = points.ToString();
         }
+        //Se usa para que el marcador no muestre menos puntos de cero
         else if (points < 0)
         {
             points = 0;
