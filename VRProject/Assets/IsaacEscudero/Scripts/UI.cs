@@ -21,6 +21,10 @@ public class UI : MonoBehaviour
             Destroy(gameObject);
         }
         textForSableOption.text = "Modo 2 sables";
+        
+    }
+    private void Start()
+    {
         Puntuation.instance.SetMaxPuntuation(10);
     }
     //Cambia el modo de jugar con una espada o dos
