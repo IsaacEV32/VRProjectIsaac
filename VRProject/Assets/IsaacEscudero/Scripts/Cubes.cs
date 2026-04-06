@@ -38,7 +38,7 @@ public class Cubes : MonoBehaviour
         //Cada frame se disminuye el tiempo de vida del cubo
         durationTime -= Time.deltaTime;
         isAlive = true;
-        yield return new WaitForSeconds(0.05f);
+        yield return new WaitForSecondsRealtime(0.05f);
         isAlive = false;
     }
     //Se usa para destruir el cubo

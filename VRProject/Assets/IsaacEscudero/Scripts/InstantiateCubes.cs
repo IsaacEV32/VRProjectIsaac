@@ -45,7 +45,7 @@ public class InstantiateCubes : MonoBehaviour
     public virtual IEnumerator InstantianteDelay()
     {
         //Mientras se mantenga activo el generador de cubos
-        while (isSpawning)
+        while (isSpawning && Time.timeScale != 0)
         {
             //Se creara un offset
             float offset = Random.Range(-destinationOffsetRange, destinationOffsetRange);
