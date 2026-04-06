@@ -40,15 +40,16 @@ public class EventoMando : MonoBehaviour
     }
     public void Continue()
     {
+        StartCoroutine(AudioManager.instance.PlayMenuButtonSound());
         UI.SetActive(false);
         Time.timeScale = 1.0f;
     }
     public void ExitToMenu()
     {
-        SceneManager.LoadScene(0);
+        StartCoroutine(AudioManager.instance.PlayExitMenuButtonSound());
     }
     public void ExitGame()
     {
-        Application.Quit();
+        StartCoroutine(AudioManager.instance.PlayExitGameButtonSound());
     }
 }

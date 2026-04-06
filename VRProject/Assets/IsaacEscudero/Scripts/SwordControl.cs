@@ -32,6 +32,7 @@ public class SwordControl : MonoBehaviour
         Debug.Log(collision.gameObject.name);
         if (collision.gameObject.TryGetComponent(out DetectorSideCube dC))
         {
+            AudioManager.instance.PlayGoodCutSound();
             Debug.Log("Me golpeaste");
             //Se llama a la funcion para actualizar la puntuacion
             Puntuation.instance.SetPuntuationCubosNormales();
@@ -44,10 +45,12 @@ public class SwordControl : MonoBehaviour
         {
             if (c as CubesFlechas)
             {
+                AudioManager.instance.PlayWrongCutSound();
                 c.DestroyCube();
             }
             if (c as HardModeCubes)
             {
+                AudioManager.instance.PlayBombSound();
                 //Se llama a la funcion para actualizar la puntuacion
                 Puntuation.instance.SetPuntuationCubosModoDificil();
                 //Se destruye el cubo
@@ -55,6 +58,7 @@ public class SwordControl : MonoBehaviour
             }
             else if (SceneManager.GetActiveScene().buildIndex == 1)
             {
+                AudioManager.instance.PlayGoodCutSound();
                 //Se llama a la funcion para actualizar la puntuacion
                 Puntuation.instance.SetPuntuationCubosNormales();
                 //Se destruye el cubo
