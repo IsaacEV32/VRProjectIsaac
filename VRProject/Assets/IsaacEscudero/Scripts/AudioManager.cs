@@ -56,6 +56,6 @@ public class AudioManager : MonoBehaviour
     }
     public void PlayBombSound()
     {
-        audioSource.PlayOneShot(buttonClick);
+        audioSource.PlayOneShot(bomb);
     }
 }
