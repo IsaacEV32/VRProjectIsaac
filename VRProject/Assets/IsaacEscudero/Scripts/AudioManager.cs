@@ -6,15 +6,22 @@ using UnityEngine.SceneManagement;
 public class AudioManager : MonoBehaviour
 {
     [SerializeField]AudioSource audioSource;
+    [SerializeField] AudioSource musicSource;
     [SerializeField]AudioClip buttonClick;
     [SerializeField] AudioClip wrongCut;
     [SerializeField] AudioClip goodCut;
     [SerializeField] AudioClip bomb;
+
+    [SerializeField] AudioClip MenuVRMusic;
+    [SerializeField] AudioClip NivelFacilMusic;
+    [SerializeField] AudioClip NivelDificilMusic;
+    [SerializeField] AudioClip NivelFlechasMusic;
     public static AudioManager instance;
     [SerializeField] GameObject Menu;
 
     private void Awake()
     {
+        musicSource.Stop();
         if (instance == null)
         {
             instance = this;
@@ -22,6 +29,26 @@ public class AudioManager : MonoBehaviour
         else 
         {
             Destroy(this.gameObject);
+        }
+        switch (SceneManager.GetActiveScene().buildIndex)
+        {
+            case 0:
+                musicSource.clip = MenuVRMusic;
+                musicSource.Play();
+                break;
+            case 1:
+                musicSource.clip = NivelFacilMusic;
+                musicSource.Play();
+                break;
+            case 2:
+                musicSource.clip = NivelDificilMusic;
+                musicSource.Play();
+                break;
+            case 3:
+                musicSource.clip = NivelFlechasMusic;
+                musicSource.Play();
+                break;
+
         }
     }
 
