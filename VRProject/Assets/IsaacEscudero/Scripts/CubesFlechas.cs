@@ -12,7 +12,8 @@ public class CubesFlechas : Cubes
     [SerializeField] Sprite flechaDerecha;
     [SerializeField] Sprite flechaIzquierda;  
     [SerializeField] SpriteRenderer flecha;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    //Sirve para decidir que hacia que lado debera de destruir el bloque y
+    //se mostrara el sprite de la flecha de la direccion en la que debera cortar el jugador
     void Start()
     {
         this.gameObject.SetActive(true);

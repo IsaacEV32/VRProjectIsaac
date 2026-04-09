@@ -21,11 +21,12 @@ public class EventoMando : MonoBehaviour
         // Desuscribirse para evitar errores de memoria
         menuActionReference.action.performed -= OnMenuButtonPressed;
     }
-
+    //Se activara al dar el boton de menu del mando izquierdo de VR
     private void OnMenuButtonPressed(InputAction.CallbackContext context)
     {
         if (context.performed)
         {
+            //Se activara o desactivara la UI y el tiempo dependiendo del estado de la UI 
             if (UI.activeSelf)
             {
                 UI.SetActive(false);
@@ -38,16 +39,19 @@ public class EventoMando : MonoBehaviour
             }
         }
     }
+    //Volvera a activar el tiempo y desactivara la UI
     public void Continue()
     {
         StartCoroutine(AudioManager.instance.PlayMenuButtonSound());
         UI.SetActive(false);
         Time.timeScale = 1.0f;
     }
+    //Se usa para volver a la escena de MenuVR
     public void ExitToMenu()
     {
         StartCoroutine(AudioManager.instance.PlayExitMenuButtonSound());
     }
+    //Se usa para salir del juego
     public void ExitGame()
     {
         StartCoroutine(AudioManager.instance.PlayExitGameButtonSound());

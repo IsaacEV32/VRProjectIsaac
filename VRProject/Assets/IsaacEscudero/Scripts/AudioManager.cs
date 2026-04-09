@@ -1,5 +1,4 @@
 using System.Collections;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -18,7 +17,7 @@ public class AudioManager : MonoBehaviour
     [SerializeField] AudioClip NivelFlechasMusic;
     public static AudioManager instance;
     [SerializeField] GameObject Menu;
-
+    //Parara cualquier musica que hubiera antes y pondra musica de fondo dependiendo del nivel
     private void Awake()
     {
         musicSource.Stop();
@@ -51,16 +50,18 @@ public class AudioManager : MonoBehaviour
 
         }
     }
-
+    //Sirven para ejecutar los sonidos
     public IEnumerator PlayMenuButtonSound()
     {
         audioSource.PlayOneShot(buttonClick);
+        //Se termina despues de esperar a que termine el sonido
         yield return new WaitUntil(() => !audioSource.isPlaying);
         Debug.Log("Termino el audio");
     }
     public IEnumerator PlayExitMenuButtonSound()
     {
         audioSource.PlayOneShot(buttonClick);
+        //Esperara a que termine el audio para poder volver al menu principal
         yield return new WaitUntil(() => !audioSource.isPlaying);
         DontDestroyOnLoad(Menu);
         DontDestroyOnLoad(this);
@@ -70,9 +71,11 @@ public class AudioManager : MonoBehaviour
     public IEnumerator PlayExitGameButtonSound()
     {
         audioSource.PlayOneShot(buttonClick);
+        //Esperara a que termine el audio para cerrar la aplicacion
         yield return new WaitUntil(() => !audioSource.isPlaying);
         Application.Quit();
     }
+    //Efectos de sonido para cuando corta un bloque determinado
     public void PlayGoodCutSound()
     {
         audioSource.PlayOneShot(goodCut);

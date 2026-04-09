@@ -1,19 +1,14 @@
 using System.Collections;
-using TMPro;
-using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class SwordControl : MonoBehaviour
 {
-    int layer = 8;
-    LayerMask cubeFlechaLayer;
     [SerializeField] GameObject leftSable;
     bool chronometerON = false;
     //Sirve comprobar si se ha activado el modo dos espadas o una espada
     private void Start()
     {
-        cubeFlechaLayer = 1 << layer;
         if (leftSable != null)
         {
             if (!UI.instance.CheckSableMode())
@@ -32,11 +27,14 @@ public class SwordControl : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         Debug.Log(collision.gameObject.name);
+        //Si no ha empezado la cuenta regresiva
         if (!chronometerON)
         {
             if (collision.gameObject.TryGetComponent(out DetectorSideCube dC))
             {
+                //Se desactiva el collider del objeto por si acaso
                 dC.gameObject.GetComponentInParent<Collider>().enabled = false;
+                //Se hace sonar el sonido de buen corte
                 AudioManager.instance.PlayGoodCutSound();
                 //Se llama a la funcion para actualizar la puntuacion
                 Puntuation.instance.SetPuntuationCubosNormales();
@@ -69,8 +67,8 @@ public class SwordControl : MonoBehaviour
                     c.DestroyCube();
                 }
             }
-
-
+            //Empezara la corrutina para que haya un pequeño delay y no suenen dos sonidos a la vez
+            StartCoroutine(DelayForCut());
         }
 
     }
